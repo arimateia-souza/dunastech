@@ -6,69 +6,60 @@
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| Python | 3.14.3 | Core runtime language |
-| Streamlit | 1.58.0 | Web application framework |
+| Node.js | v24.13.1 | JavaScript runtime environment |
+| npm | 11.8.0 | Package manager |
 
 ## Core Technologies
 
-### Python Libraries
+### Framework & Libraries
 | Feature | System / Location | Purpose |
 |---------|-------------------|---------|
-| Data Analysis & Mocking | Pandas 3.0.3, Numpy 2.5.0 | Data structuring, DataFrame representation and calculations. |
-| Interactive Charts | Plotly 6.8.0 | Generation of B2G KPI visualizations. |
-| Instagram Scraping | Apify Client 3.0.4 | Connecting to Apify Actor to fetch social media data. |
+| Web Framework | Next.js (App Router) | Frontend UI rendering, layouts, client routing, and API routing. |
+| Language | TypeScript | Type safety and autocompletion. |
+| Styling | Tailwind CSS | Utility-first styling for fluid UI/UX. |
+| Database | Firebase Firestore | Real-time database to persist B2C reports and sync with B2G. |
+| Charts | Recharts / Chart.js | Visual representation of municipal KPIs. |
+| Animations | Framer Motion | Fluid micro-interactions and route transition animations. |
 
 ### Component Directories
-| Directory | Files | Purpose |
-|-----------|-------|---------|
-| `.` | 1 (`app.py`) | Main frontend & backend dashboard logic. |
-| `adapters/` | 3 | Guidelines and configurations for AI models. |
-| `scripts/` | 12 | Automation scripts for workspace setup and validation. |
+| Directory | Purpose |
+|-----------|---------|
+| `src/app/` | Next.js app pages and serverless API endpoints. |
+| `src/components/` | Reusable React UI components (B2C form, B2G charts, Sidebar). |
+| `src/lib/` | Firebase configuration and client instance. |
+| `src/data/` | Static JSON mock data (IBGE, Cadastur, Transporte, Investimentos). |
 
 ## Dependencies
 
-### External Dependencies
+### External Dependencies (Planned)
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `streamlit` | 1.58.0 | UI rendering and state management. |
-| `pandas` | 3.0.3 | Handling tabular data and mock datasets. |
-| `numpy` | 2.5.0 | Supporting numerical arrays. |
-| `plotly` | 6.8.0 | Interactive plotting and charting. |
-| `apify-client` | 3.0.4 | Web scraping integration for social data. |
-| `google-generativeai` | Planned | (Planned) Integration with Google Gemini. |
-
-### Internal Dependencies
-
-| Component | Depends On | Purpose |
-|-----------|------------|---------|
-| `app.py` | `carregar_dados_mock()` | Loads mock tourism data for the B2G dashboard. |
-| `app.py` | `buscar_dados_instagram()` | Uses Apify Client to query real-time posts. |
+| `next` | latest | Next.js framework core |
+| `react` / `react-dom` | latest | UI library |
+| `firebase` | latest | Firebase Firestore Web Client SDK |
+| `recharts` | latest | Responsive data charts for B2G |
+| `framer-motion` | latest | Animation library |
+| `lucide-react` | latest | Modern clean SVG icon set |
+| `@google/generative-ai` | latest | Gemini API server-side client |
+| `apify-client` | latest | Apify API server-side client |
 
 ## Infrastructure
 
 | Service | Provider | Purpose |
 |---------|----------|---------|
+| Web Hosting & Backend API | Vercel | Serverless host for Next.js frontend and api endpoints. |
+| Cloud Database | Firebase (Google) | Firestore for real-time document storage. |
 | Web Scraping API | Apify | Actor-based Instagram scraping. |
-| Generative AI API | Google | (Planned) Gemini API for insights generation. |
-
-**Repository:** Local git repository in `c:\Users\Leobu\OneDrive\Desktop\DunasTech`
 
 ## Configuration
 
 | Variable | Purpose | Location |
 |----------|---------|----------|
-| `apify_token_pitch` | Authenticates with Apify API. | User input in app UI. |
-| `gemini_api_key` | (Planned) Authenticates with Google Gemini API. | OS Environment variable or user input. |
-
-## File Size Inventory
-
-| Category | Count | Total Lines (approx) |
-|----------|-------|---------------------|
-| Main App (Python) | 1 | 900 |
-| Configuration / Markdown | 5 | 300 |
-| Automation Scripts (PS/Bash) | 12 | 700 |
-| **Total** | **18** | **1900** |
+| `NEXT_PUBLIC_FIREBASE_API_KEY` | Connects Next.js to Firestore. | Vercel env / `.env.local` |
+| `NEXT_PUBLIC_FIREBASE_PROJECT_ID` | Connects Next.js to Firestore. | Vercel env / `.env.local` |
+| `APIFY_API_TOKEN` | Authenticates with Apify (Server-side). | Vercel env / `.env.local` |
+| `GEMINI_API_KEY` | Authenticates with Gemini API (Server-side). | Vercel env / `.env.local` |
 
 ---
 

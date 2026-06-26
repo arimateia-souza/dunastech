@@ -1,13 +1,13 @@
 ---
 milestone: MVP Observatório Inteligente do Turismo
-updated: 2026-06-26T23:46:00-03:00
+updated: 2026-06-26T23:57:00-03:00
 ---
 
 # Requirements
 
 ## Overview
 
-Requirements derived from SPEC.md for traceability and coverage tracking.
+Requirements derived from SPEC.md for Next.js, Firebase and Vercel stack.
 
 ---
 
@@ -15,15 +15,16 @@ Requirements derived from SPEC.md for traceability and coverage tracking.
 
 | ID | Requirement | Source | Phase | Status |
 |----|-------------|--------|-------|--------|
-| REQ-01 | Estruturação dos dados mock de IBGE, Cadastur, Transporte e Investimentos | SPEC Goal 1, 2 | 1 | Pending |
-| REQ-02 | Interface Mobile-Friendly para a visão B2C com seletor de destino | SPEC Goal 1 | 2 | Pending |
-| REQ-03 | Filtragem de rotas/estabelecimentos locais baseados no Cadastur | SPEC Goal 1 | 2 | Pending |
-| REQ-04 | Formulário de avaliação de saúde do atrativo salvando em st.session_state | SPEC Goal 1 | 2 | Pending |
-| REQ-05 | Dashboard B2G exibindo st.metrics gerais (fluxo, receita, transportes) | SPEC Goal 2 | 3 | Pending |
-| REQ-06 | Cálculo dinâmico do Índice de Saúde do Atrativo (ISA) baseado em mock e B2C | SPEC Goal 2 | 3 | Pending |
-| REQ-07 | Gatilho para coletar posts do Instagram via Apify Scraper (hashtag search) | SPEC Goal 3 | 3 | Pending |
-| REQ-08 | Motor de Insights com prompt para a API Gemini (diagnósticos gerenciais) | SPEC Goal 4 | 3 | Pending |
-| REQ-09 | Apresentação premium das regras de negócio de monetização B2B/B2G | SPEC Goal 5 | 4 | Pending |
+| REQ-01 | Inicialização do projeto Next.js com TypeScript e Tailwind CSS | SPEC Goal 1, 6 | 1 | Pending |
+| REQ-02 | Configuração e conexão do SDK do Firebase Firestore no client-side | SPEC Goal 3 | 1 | Pending |
+| REQ-03 | Interface mobile B2C com seleção de destino e listagem do Cadastur | SPEC Goal 1 | 2 | Pending |
+| REQ-04 | Gravação das avaliações do formulário B2C no Firestore | SPEC Goal 3 | 2 | Pending |
+| REQ-05 | Dashboard B2G com KPIs e gráficos usando dados estáticos (mocks) | SPEC Goal 2 | 3 | Pending |
+| REQ-06 | Escuta em tempo real do Firestore no B2G e cálculo dinâmico do ISA | SPEC Goal 2, 3 | 3 | Pending |
+| REQ-07 | Rota `/api/scraper` integrada com Apify (Instagram Scraper) | SPEC Goal 4 | 3 | Pending |
+| REQ-08 | Rota `/api/gemini` integrada com API do Gemini (AI Insights) | SPEC Goal 4 | 3 | Pending |
+| REQ-09 | Página/Componente com o pitch comercial de monetização (B2B/B2G) | SPEC Goal 5 | 4 | Pending |
+| REQ-10 | Deploy de produção do site na Vercel com variáveis de ambiente | SPEC Goal 6 | 4 | Pending |
 
 ---
 
@@ -31,10 +32,10 @@ Requirements derived from SPEC.md for traceability and coverage tracking.
 
 | ID | Requirement | Category | Phase | Status |
 |----|-------------|----------|-------|--------|
-| NFR-01 | Tempo de renderização do Streamlit fluido sem travamento | Performance | 4 | Pending |
-| NFR-02 | Design responsivo para simular interface Mobile B2C no mesmo app | UX | 2, 4 | Pending |
-| NFR-03 | Coleta do Apify limitada a 3 resultados por consulta | Cost Control | 3 | Pending |
-| NFR-04 | Tratamento de erro robusto caso as chaves de API estejam vazias | Reliability | 3 | Pending |
+| NFR-01 | UX Mobile-first responsiva para a visão B2C | UX | 2, 4 | Pending |
+| NFR-02 | API Keys protegidas no backend (Server-side API Routes) | Security | 3 | Pending |
+| NFR-03 | Sincronização em tempo real menor que 2 segundos via Firestore listeners | Performance | 3 | Pending |
+| NFR-04 | Feedback visual de carregamento (skeletons/spinners) durante requisições de API | UX | 3 | Pending |
 
 ---
 
@@ -42,8 +43,9 @@ Requirements derived from SPEC.md for traceability and coverage tracking.
 
 | ID | Constraint | Source | Impact |
 |----|------------|--------|--------|
-| CON-01 | Executado inteiramente em Python + Streamlit | Technical | Todo o código frontend e backend fica em app.py |
-| CON-02 | Prazo de entrega no Domingo, 28/06 às 13h59 | Hackathon | Foco na entrega funcional no prazo sem refatorações excessivas |
+| CON-01 | Deploy na plataforma Vercel | Technical | Next.js otimizado para Vercel Serverless |
+| CON-02 | Coleta do Apify limitada a 3 resultados por hashtag | Cost Control | Limitação no payload da API `/api/scraper` |
+| CON-03 | Prazo final: Domingo 28/06 às 13h59 | Hackathon | Foco em componentes funcionais e sem refatorações redundantes |
 
 ---
 
@@ -51,15 +53,16 @@ Requirements derived from SPEC.md for traceability and coverage tracking.
 
 | Requirement | Plans | Tests | Status |
 |-------------|-------|-------|--------|
-| REQ-01 | 1.1 | Visualizar dataframes carregados | Pending |
-| REQ-02 | 2.1 | Chavear para aba B2C e verificar layout | Pending |
-| REQ-03 | 2.1 | Verificar filtro do Cadastur no selectbox | Pending |
-| REQ-04 | 2.2 | Avaliar atrativo e verificar se salva no session_state | Pending |
-| REQ-05 | 3.1 | Visualizar as métricas do painel B2G | Pending |
-| REQ-06 | 3.1 | Verificar alteração do ISA após novos feedbacks B2C | Pending |
-| REQ-07 | 3.2 | Rodar busca de hashtag e checar feed do Instagram | Pending |
-| REQ-08 | 3.3 | Enviar dados ao Gemini e ler resposta de diagnóstico | Pending |
-| REQ-09 | 4.1 | Verificar presença dos cards de pitch e monetização | Pending |
+| REQ-01 | 1.1 | Rodar `npm run dev` e acessar localhost | Pending |
+| REQ-02 | 1.2 | Verificar logs de conexão do Firebase sem erros | Pending |
+| REQ-03 | 2.1 | Acessar rota B2C no celular/simulador e ver layout | Pending |
+| REQ-04 | 2.2 | Submeter formulário B2C e verificar registro no Firebase Console | Pending |
+| REQ-05 | 3.1 | Acessar rota B2G e visualizar gráficos e métricas mockadas | Pending |
+| REQ-06 | 3.1 | Submeter no B2C e observar o ISA e KPIs do B2G mudarem em tempo real | Pending |
+| REQ-07 | 3.2 | Chamar `/api/scraper` e checar JSON retornado com posts | Pending |
+| REQ-08 | 3.3 | Chamar `/api/gemini` e ver resposta textual coerente da IA | Pending |
+| REQ-09 | 4.1 | Visualizar seções de monetização no rodapé/dashboard | Pending |
+| REQ-10 | 4.2 | Acessar URL da Vercel e testar o app em produção | Pending |
 
 ---
 
